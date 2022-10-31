@@ -15,7 +15,7 @@ namespace Adventure.Service.Models.Response
 
     //public static class UserAdventureSelectionStepsExtension
     //{
-    //    public static UserAdventureDetailsDto ToDetailsDto(this Domain.DomainModels.AdventureModels.Adventure adventure, string adventureName)
+    //    public static UserAdventureDetailsDto ToDetailsDto(this Domain.DomainModels.AdventureAggregate.Adventure adventure, string adventureName)
     //    {
 
     //    }

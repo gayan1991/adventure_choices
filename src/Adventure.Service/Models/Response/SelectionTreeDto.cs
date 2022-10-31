@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Adventure.Domain.DomainModels.AdventureModels;
+using Adventure.Domain.DomainModels.AdventureAggregate;
 
 namespace Adventure.Service.Models.Response
 {

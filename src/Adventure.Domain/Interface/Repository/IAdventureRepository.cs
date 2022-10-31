@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Adventure.Domain.DomainModels.AdventureModels;
+using Adventure.Domain.DomainModels.AdventureAggregate;
 
 namespace Adventure.Domain.Interface.Repository
 {
-    public interface IAdventureRepository : IRepository<DomainModels.AdventureModels.Adventure>
+    public interface IAdventureRepository : IRepository<DomainModels.AdventureAggregate.Adventure>
     {
-        Task<DomainModels.AdventureModels.Adventure?> GetAdventureById(Guid adventureId);
+        Task<DomainModels.AdventureAggregate.Adventure?> GetAdventureById(Guid adventureId);
         Task<AdventureSelection?> GetAdventureStep(Guid adventureId, byte code);
-        void Add(DomainModels.AdventureModels.Adventure adventure);
-        void Update(Domain.DomainModels.AdventureModels.Adventure adventure);
+        void Add(DomainModels.AdventureAggregate.Adventure adventure);
+        void Update(Domain.DomainModels.AdventureAggregate.Adventure adventure);
     }
 }

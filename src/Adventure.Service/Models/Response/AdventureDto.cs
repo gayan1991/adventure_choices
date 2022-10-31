@@ -9,7 +9,7 @@
 
     public static class AdventureExtension
     {
-        public static AdventureDto ToDto(this Domain.DomainModels.AdventureModels.Adventure obj)
+        public static AdventureDto ToDto(this Domain.DomainModels.AdventureAggregate.Adventure obj)
         {
             return new AdventureDto()
             {
@@ -17,7 +17,7 @@
                 Name = obj.Name
             };
         }
-        public static AdventureDto ToDetailDto(this Domain.DomainModels.AdventureModels.Adventure obj)
+        public static AdventureDto ToDetailDto(this Domain.DomainModels.AdventureAggregate.Adventure obj)
         {
             return new AdventureDto()
             {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adventure.Domain.DomainModels.AdventureModels
+namespace Adventure.Domain.DomainModels.AdventureAggregate
 {
     public class AdventureSelection : BaseModel
     {

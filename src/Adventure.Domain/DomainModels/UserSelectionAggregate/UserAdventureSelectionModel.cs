@@ -1,11 +1,11 @@
-﻿using Adventure.Domain.DomainModels.AdventureModels;
+﻿using Adventure.Domain.DomainModels.AdventureAggregate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adventure.Domain.DomainModels.SelectionModels
+namespace Adventure.Domain.DomainModels.UserSelectionAggregate
 {
     public class UserAdventureSelection : BaseModel
     {

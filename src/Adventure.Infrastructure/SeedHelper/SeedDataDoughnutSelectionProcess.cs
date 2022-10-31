@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Adventure.Domain.DomainModels.AdventureModels;
+using Adventure.Domain.DomainModels.AdventureAggregate;
 
 namespace Adventure.Infrastructure.SeedHelper
 {
@@ -14,8 +14,8 @@ namespace Adventure.Infrastructure.SeedHelper
         {
             #region Parent
 
-            var adventure = new Domain.DomainModels.AdventureModels.Adventure("Doughnut Selection");
-            builder.Entity<Domain.DomainModels.AdventureModels.Adventure>().HasData(adventure);
+            var adventure = new Domain.DomainModels.AdventureAggregate.Adventure("Doughnut Selection");
+            builder.Entity<Domain.DomainModels.AdventureAggregate.Adventure>().HasData(adventure);
 
             #endregion
 

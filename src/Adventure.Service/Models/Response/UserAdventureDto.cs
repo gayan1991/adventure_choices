@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Adventure.Domain.DomainModels.SelectionModels;
+using Adventure.Domain.DomainModels.UserSelectionAggregate;
 
 namespace Adventure.Service.Models.Response
 {
@@ -33,7 +33,7 @@ namespace Adventure.Service.Models.Response
             };
         }
 
-        public static UserAdventureDto ToDetailDto(this UserAdventureSelection selection, Domain.DomainModels.AdventureModels.Adventure adventure)
+        public static UserAdventureDto ToDetailDto(this UserAdventureSelection selection, Domain.DomainModels.AdventureAggregate.Adventure adventure)
         {
             var currentSelectedStep = selection.Steps.MaxBy(x => x.Step);
 

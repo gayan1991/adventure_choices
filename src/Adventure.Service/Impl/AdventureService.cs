@@ -86,7 +86,7 @@ namespace Adventure.Service.Impl
 
         public async Task<SuccessDto> CreateNewAdventureAsync(NewAdventureDto adventureDto)
         {
-            var adventure = new Domain.DomainModels.AdventureModels.Adventure(adventureDto.Name);
+            var adventure = new Domain.DomainModels.AdventureAggregate.Adventure(adventureDto.Name);
 
             adventure.AddChoice(0, adventureDto.Selection.Action, adventureDto.Selection.Text);
             AddChoicesToAdventure(adventure, 0, adventureDto.Selection.NextSelections);
@@ -148,7 +148,7 @@ namespace Adventure.Service.Impl
 
         #region Private
 
-        private void AddChoicesToAdventure(Domain.DomainModels.AdventureModels.Adventure adventure, byte parentCode, List<SelectionDto>? selections)
+        private void AddChoicesToAdventure(Domain.DomainModels.AdventureAggregate.Adventure adventure, byte parentCode, List<SelectionDto>? selections)
         {
             if (selections == null) return;
 

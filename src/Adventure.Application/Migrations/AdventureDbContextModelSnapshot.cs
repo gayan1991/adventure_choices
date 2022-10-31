@@ -22,7 +22,7 @@ namespace Adventure.Application.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Adventure.Domain.DomainModels.AdventureModels.Adventure", b =>
+            modelBuilder.Entity("Adventure.Domain.DomainModels.AdventureAggregate.Adventure", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -76,7 +76,7 @@ namespace Adventure.Application.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Adventure.Domain.DomainModels.AdventureModels.AdventureSelection", b =>
+            modelBuilder.Entity("Adventure.Domain.DomainModels.AdventureAggregate.AdventureSelection", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -214,7 +214,7 @@ namespace Adventure.Application.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Adventure.Domain.DomainModels.SelectionModels.UserAdventureSelection", b =>
+            modelBuilder.Entity("Adventure.Domain.DomainModels.UserSelectionAggregate.UserAdventureSelection", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -262,7 +262,7 @@ namespace Adventure.Application.Migrations
                     b.ToTable("UserAdventureSelection", (string)null);
                 });
 
-            modelBuilder.Entity("Adventure.Domain.DomainModels.SelectionModels.UserAdventureStepsSelection", b =>
+            modelBuilder.Entity("Adventure.Domain.DomainModels.UserSelectionAggregate.UserAdventureStepsSelection", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -307,9 +307,9 @@ namespace Adventure.Application.Migrations
                     b.ToTable("UserAdventureStepsSelection", (string)null);
                 });
 
-            modelBuilder.Entity("Adventure.Domain.DomainModels.AdventureModels.AdventureSelection", b =>
+            modelBuilder.Entity("Adventure.Domain.DomainModels.AdventureAggregate.AdventureSelection", b =>
                 {
-                    b.HasOne("Adventure.Domain.DomainModels.AdventureModels.Adventure", "Adventure")
+                    b.HasOne("Adventure.Domain.DomainModels.AdventureAggregate.Adventure", "Adventure")
                         .WithMany("Choices")
                         .HasForeignKey("AdventureId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -318,9 +318,9 @@ namespace Adventure.Application.Migrations
                     b.Navigation("Adventure");
                 });
 
-            modelBuilder.Entity("Adventure.Domain.DomainModels.SelectionModels.UserAdventureStepsSelection", b =>
+            modelBuilder.Entity("Adventure.Domain.DomainModels.UserSelectionAggregate.UserAdventureStepsSelection", b =>
                 {
-                    b.HasOne("Adventure.Domain.DomainModels.SelectionModels.UserAdventureSelection", "AdventureSelection")
+                    b.HasOne("Adventure.Domain.DomainModels.UserSelectionAggregate.UserAdventureSelection", "AdventureSelection")
                         .WithMany("Steps")
                         .HasForeignKey("AdventureSelectionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -329,12 +329,12 @@ namespace Adventure.Application.Migrations
                     b.Navigation("AdventureSelection");
                 });
 
-            modelBuilder.Entity("Adventure.Domain.DomainModels.AdventureModels.Adventure", b =>
+            modelBuilder.Entity("Adventure.Domain.DomainModels.AdventureAggregate.Adventure", b =>
                 {
                     b.Navigation("Choices");
                 });
 
-            modelBuilder.Entity("Adventure.Domain.DomainModels.SelectionModels.UserAdventureSelection", b =>
+            modelBuilder.Entity("Adventure.Domain.DomainModels.UserSelectionAggregate.UserAdventureSelection", b =>
                 {
                     b.Navigation("Steps");
                 });

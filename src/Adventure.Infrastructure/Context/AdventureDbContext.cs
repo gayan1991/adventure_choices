@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Adventure.Domain.DomainModels.AdventureModels;
-using Adventure.Domain.DomainModels.SelectionModels;
+using Adventure.Domain.DomainModels.AdventureAggregate;
+using Adventure.Domain.DomainModels.UserSelectionAggregate;
 using Adventure.Infrastructure.EntityConfiguration.AdventureEntityConfigurations;
 using Adventure.Infrastructure.EntityConfiguration.UserSelectionEntityConfigurations;
 using Adventure.Infrastructure.SeedHelper;
@@ -23,7 +23,7 @@ namespace Adventure.Infrastructure.Context
 
         #region Adventure Master Data
 
-        public DbSet<Domain.DomainModels.AdventureModels.Adventure> Adventures { get; set; }
+        public DbSet<Domain.DomainModels.AdventureAggregate.Adventure> Adventures { get; set; }
         public DbSet<AdventureSelection> AdventureSelections { get; set; }
 
         #endregion

@@ -1,5 +1,5 @@
-﻿using Adventure.Domain.DomainModels.AdventureModels;
-using Adventure.Domain.DomainModels.SelectionModels;
+﻿using Adventure.Domain.DomainModels.AdventureAggregate;
+using Adventure.Domain.DomainModels.UserSelectionAggregate;
 using Adventure.Domain.Interface.Repository;
 using Adventure.Domain.Util;
 using Adventure.Domain.Util.Exceptions;

@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Adventure.Domain.DomainModels.AdventureModels;
+using Adventure.Domain.DomainModels.AdventureAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace Adventure.Infrastructure.EntityConfiguration.AdventureEntityConfigurations
 {
-    internal class AdventureModelEntityConfiguration : BaseEntityTypeConfiguration<Adventure.Domain.DomainModels.AdventureModels.Adventure>
+    internal class AdventureModelEntityConfiguration : BaseEntityTypeConfiguration<Adventure.Domain.DomainModels.AdventureAggregate.Adventure>
     {
-        public override void DomainConfiguration(EntityTypeBuilder<Adventure.Domain.DomainModels.AdventureModels.Adventure> builder)
+        public override void DomainConfiguration(EntityTypeBuilder<Adventure.Domain.DomainModels.AdventureAggregate.Adventure> builder)
         {
             builder.Property(a => a.Name).IsRequired().HasMaxLength(200);
 

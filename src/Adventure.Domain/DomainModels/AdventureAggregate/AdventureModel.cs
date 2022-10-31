@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Adventure.Domain.Util.Exceptions;
 
-namespace Adventure.Domain.DomainModels.AdventureModels
+namespace Adventure.Domain.DomainModels.AdventureAggregate
 {
     public class Adventure : BaseModel
     {
@@ -31,7 +31,7 @@ namespace Adventure.Domain.DomainModels.AdventureModels
         public IReadOnlyList<AdventureSelection> Choices => _choices;
         public AdventureSelection SelectionTree => GenerateTreeBasedOnSelectionCodeAsync();
 
-        private Adventure() { }
+        public Adventure() { }
 
         public Adventure(string adventureName, string createdBy = "System") : base(createdBy)
         {
