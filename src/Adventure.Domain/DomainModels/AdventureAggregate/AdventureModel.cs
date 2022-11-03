@@ -40,6 +40,26 @@ namespace Adventure.Domain.DomainModels.AdventureAggregate
 
         public void AddChoice(byte code, string text, string? action = null, byte? parentCode = null, string updatedBy = "System")
         {
+            if (!_choices.Any() && code != 0)
+            {
+                throw new ArgumentException($"Code ({code}) is invalid, make sure code 0 is registered");
+            }
+
+            if (parentCode != null && !_choices.Any(x => x.Code == parentCode))
+            {
+                throw new ArgumentException($"Invalid parent code ({code}) is invalid, make sure parent is registered before adding the child");
+            }
+
+            if (parentCode != null && code <= parentCode)
+            {
+                throw new ArgumentException("Child code must be higher than parent code");
+            }
+
+            if (_choices.Any(x => x.Code == code))
+            {
+                throw new ArgumentException($"Duplicate code ({code})");
+            }
+
             _choices.Add(new AdventureSelection(this, code, parentCode, text, action));
             Update(updatedBy);
         }
@@ -63,7 +83,7 @@ namespace Adventure.Domain.DomainModels.AdventureAggregate
         {
             foreach (var choice in _choices)
             {
-                choice.MarkAsDeleted(updatedBy);
+                choice.Restore(updatedBy);
             }
             UpdateDeletedValue(false, updatedBy);
         }

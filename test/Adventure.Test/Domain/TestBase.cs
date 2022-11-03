@@ -18,17 +18,11 @@ namespace Adventure.Test.Domain
             {
                 foreach (var prop in typeof(T).GetProperties())
                 {
-                    var valA = prop.GetValue(objA);
-                    var valB = prop.GetValue(objB);
-
                     if (prop.PropertyType != typeof(string) && prop.PropertyType.IsClass)
                     {
                         continue;
                     }
-                    else
-                    {
-                        Assert.Equal(valA, valB);
-                    }
+                    Assert.Equal(prop.GetValue(objA), prop.GetValue(objB));
                 }
             }
         }

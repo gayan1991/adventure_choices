@@ -12,16 +12,11 @@ namespace Adventure.Test.Fixtures
 
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
-
-        public static TesAdventureDbContext GetTestDB()
+        public static TesAdventureDbContext GetTestDb()
         {
             var serviceProvider = new ServiceCollection().AddEntityFrameworkInMemoryDatabase().BuildServiceProvider();
 
-            var options = new DbContextOptionsBuilder<AdventureDbContext>().UseInMemoryDatabase("UserDb").ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning)).UseInternalServiceProvider(serviceProvider).Options;
+            var options = new DbContextOptionsBuilder<AdventureDbContext>().UseInMemoryDatabase("AdventureDb").ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning)).UseInternalServiceProvider(serviceProvider).Options;
 
             var dbContext = new TesAdventureDbContext(options);
 

@@ -1,18 +1,18 @@
-﻿using System;
+﻿using Adventure.Domain.DomainModels.AdventureAggregate;
+using Adventure.Test.Builders.AdventureAggregate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Adventure.Test.Builders.AdventureAggregate;
-using Xunit;
 
 namespace Adventure.Test.Domain.DomainModels.AdventureAggregate
 {
-    public class CreateAdventureTestData : TheoryData<Adventure.Domain.DomainModels.AdventureAggregate.Adventure>
+    public class CreateAdventureTreeTestData : TheoryData<Adventure.Domain.DomainModels.AdventureAggregate.Adventure, Tuple<AdventureSelection, Array?>>
     {
         private static AdventureSelectionBuilder SystemSelection => new AdventureSelectionBuilder().WithSystemAsUser();
 
-        public CreateAdventureTestData()
+        public CreateAdventureTreeTestData()
         {
             AdventureRecordWithSingleSelectionRecord();
             AdventureRecordWithYesNoQuestions();
@@ -29,8 +29,8 @@ namespace Adventure.Test.Domain.DomainModels.AdventureAggregate
                 .WithName("XYZ")
                 .WithSystemAsUser()
                 .WithAdventureSelection(selection);
-
-            Add(adventure);
+            
+            Add(adventure, new Tuple<AdventureSelection, Array?>(selection, null));
         }
 
         private void AdventureRecordWithYesNoQuestions()
@@ -87,54 +87,6 @@ namespace Adventure.Test.Domain.DomainModels.AdventureAggregate
                 .WithAction("No")
                 .WithText("Are you planning to have kids?");
 
-            var selection10 = SystemSelection
-                .WithCode(9)
-                .WithParentCode(4)
-                .WithAction("Yes")
-                .WithText("Get Married Soon!");
-
-            var selection11 = SystemSelection
-                .WithCode(10)
-                .WithParentCode(4)
-                .WithAction("Yes")
-                .WithText("Are you not planning to get married?");
-
-            var selection12 = SystemSelection
-                .WithCode(11)
-                .WithParentCode(7)
-                .WithAction("Yes")
-                .WithText("Good luck");
-
-            var selection13 = SystemSelection
-                .WithCode(12)
-                .WithParentCode(7)
-                .WithAction("No")
-                .WithText("Hope you are happy!");
-
-            var selection14 = SystemSelection
-                .WithCode(13)
-                .WithParentCode(8)
-                .WithAction("Yes")
-                .WithText("Good luck!");
-
-            var selection15 = SystemSelection
-                .WithCode(14)
-                .WithParentCode(8)
-                .WithAction("No")
-                .WithText("I appreciate your choice");
-
-            var selection16 = SystemSelection
-                .WithCode(15)
-                .WithParentCode(10)
-                .WithAction("Yes")
-                .WithText("Good luck");
-
-            var selection17 = SystemSelection
-                .WithCode(16)
-                .WithParentCode(10)
-                .WithAction("No")
-                .WithText("Single life rocks!");
-
             var adventure = new AdventureBuilder()
                 .WithSystemAsUser()
                 .WithName("XYZ")
@@ -146,17 +98,19 @@ namespace Adventure.Test.Domain.DomainModels.AdventureAggregate
                 .WithAdventureSelection(selection6)
                 .WithAdventureSelection(selection7)
                 .WithAdventureSelection(selection8)
-                .WithAdventureSelection(selection9)
-                .WithAdventureSelection(selection10)
-                .WithAdventureSelection(selection11)
-                .WithAdventureSelection(selection12)
-                .WithAdventureSelection(selection13)
-                .WithAdventureSelection(selection14)
-                .WithAdventureSelection(selection15)
-                .WithAdventureSelection(selection16)
-                .WithAdventureSelection(selection17);
+                .WithAdventureSelection(selection9);
 
-            Add(adventure);
+            var select9 = new Tuple<AdventureSelection, Array?>(selection9, null);
+            var select8 = new Tuple<AdventureSelection, Array?>(selection8, null);
+            var select7 = new Tuple<AdventureSelection, Array?> (selection7, null);
+            var select6 = new Tuple<AdventureSelection, Array?>(selection6, null);
+            var select5 = new Tuple<AdventureSelection, Array?>(selection5, null);
+            var select4 = new Tuple<AdventureSelection, Array?>(selection4, new[] { select9, select8});
+            var select3 = new Tuple<AdventureSelection, Array?>(selection3, new[] { select7, select6 });
+            var select2 = new Tuple<AdventureSelection, Array?>(selection2, new[] { select5, select4 });
+            var select = new Tuple<AdventureSelection, Array?>(selection, new[] { select3, select2 });
+
+            Add(adventure, select);
         }
 
         private void AdventureRecordWithMultipleChoiceQuestions()
@@ -204,8 +158,15 @@ namespace Adventure.Test.Domain.DomainModels.AdventureAggregate
                 .WithAdventureSelection(selection4)
                 .WithAdventureSelection(selection5)
                 .WithAdventureSelection(selection6);
+            
+            var select6 = new Tuple<AdventureSelection, Array?>(selection6, null);
+            var select5 = new Tuple<AdventureSelection, Array?>(selection5, null);
+            var select4 = new Tuple<AdventureSelection, Array?>(selection4, null);
+            var select3 = new Tuple<AdventureSelection, Array?>(selection3, null);
+            var select2 = new Tuple<AdventureSelection, Array?>(selection2, null);
+            var select = new Tuple<AdventureSelection, Array?>(selection, new[] { select6, select5, select4, select3, select2 });
 
-            Add(adventure);
+            Add(adventure, select);
         }
     }
 }

@@ -59,7 +59,12 @@ namespace Adventure.Infrastructure.SeedHelper
                 ParentCode = parentCode,
                 Text = text,
                 Action = action,
-                AdventureId = adventureId
+                AdventureId = adventureId,
+                CreatedAt = DateTimeOffset.UtcNow.AddMonths(-1),
+                UpdatedAt = DateTimeOffset.UtcNow.AddMonths(-1),
+                CreatedBy = "System",
+                UpdatedBy = "System",
+                IsDeleted = false
             };
         }
     }

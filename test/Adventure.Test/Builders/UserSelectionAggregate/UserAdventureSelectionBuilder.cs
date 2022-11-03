@@ -25,6 +25,7 @@ namespace Adventure.Test.Builders.UserSelectionAggregate
         private Guid _userId;
         private Guid _adventureId;
         private bool _isCompleted;
+        private bool _isSystemUser;
         private List<UserAdventureStepsSelection> _steps = new List<UserAdventureStepsSelection>();
 
         public UserAdventureSelectionBuilder WithUserId(Guid userId) => CommonReturn(this, out _userId, userId);
@@ -45,12 +46,15 @@ namespace Adventure.Test.Builders.UserSelectionAggregate
 
         public override UserAdventureSelectionBuilder WithUpdatedBy(string updatedBy) => CommonReturn(this, out _updatedBy, updatedBy);
 
+        public override UserAdventureSelectionBuilder WithSystemAsUser() => CommonReturn(this, out _isSystemUser, true);
+
         public UserAdventureSelectionBuilder WithSelectedStep(UserAdventureStepsSelection step) =>
             CommonAdd(this, ref _steps, step);
 
         protected override UserAdventureSelection Build()
         {
-            var adventurePlayedByUser = new UserAdventureSelection(_userId, _adventureId, _createdBy);
+            var adventurePlayedByUser = _isSystemUser ? new UserAdventureSelection(_userId, _adventureId) :
+                                                        new UserAdventureSelection(_userId, _adventureId, _createdBy);
 
             if (_createdAt != default)
             {

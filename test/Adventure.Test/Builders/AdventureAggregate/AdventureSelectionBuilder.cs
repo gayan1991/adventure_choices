@@ -23,7 +23,8 @@ namespace Adventure.Test.Builders.AdventureAggregate
         private byte? _parentCode;
         private string _text;
         private string? _action;
-        private Domain.DomainModels.AdventureAggregate.Adventure _adventure;
+        private bool _isSystemUser;
+        private Adventure.Domain.DomainModels.AdventureAggregate.Adventure _adventure;
 
         public AdventureSelectionBuilder WithCode(byte code) => CommonReturn(this, out _code, code);
 
@@ -43,11 +44,14 @@ namespace Adventure.Test.Builders.AdventureAggregate
 
         public override AdventureSelectionBuilder WithUpdatedBy(string updatedBy) => CommonReturn(this, out _updatedBy, updatedBy);
 
-        public AdventureSelectionBuilder WithAdventure(Domain.DomainModels.AdventureAggregate.Adventure adventure) => CommonReturn(this, out _adventure, adventure);
+        public override AdventureSelectionBuilder WithSystemAsUser() => CommonReturn(this, out _isSystemUser, true);
+
+        public AdventureSelectionBuilder WithAdventure(Adventure.Domain.DomainModels.AdventureAggregate.Adventure adventure) => CommonReturn(this, out _adventure, adventure);
 
         protected override AdventureSelection Build()
         {
-            var adventureSelection = new AdventureSelection(_adventure, _code, _parentCode, _text, _action, _createdBy);
+            var adventureSelection = _isSystemUser ? new AdventureSelection(_adventure, _code, _parentCode, _text, _action):
+                                                     new AdventureSelection(_adventure, _code, _parentCode, _text, _action, _createdBy);
 
             if(_createdAt != default)
             {

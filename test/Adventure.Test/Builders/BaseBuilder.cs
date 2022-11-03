@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Adventure.Test.Builders.AdventureAggregate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.AccessControl;
@@ -14,6 +15,7 @@ namespace Adventure.Test.Builders
         public abstract TBuilder WithUpdatedAt(DateTimeOffset updatedAt);
         public abstract TBuilder WithCreatedBy(string createdBy);
         public abstract TBuilder WithUpdatedBy(string updatedBy);
+        public abstract TBuilder WithSystemAsUser();
 
         protected abstract T Build();
 

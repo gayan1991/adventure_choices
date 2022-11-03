@@ -1,5 +1,6 @@
 ﻿using Adventure.Domain.DomainModels.AdventureAggregate;
 using Adventure.Domain.DomainModels.UserSelectionAggregate;
+using Adventure.Test.Builders.AdventureAggregate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Adventure.Test.Builders.UserSelectionAggregate
         #endregion
 
         private byte _step;
+        private bool _isSystemUser;
         private UserAdventureSelection _adventure;
 
         public UserAdventureStepsSelectionBuilder WithStep(byte step) => CommonReturn(this, out _step, step);
@@ -36,12 +38,15 @@ namespace Adventure.Test.Builders.UserSelectionAggregate
 
         public override UserAdventureStepsSelectionBuilder WithUpdatedBy(string updatedBy) => CommonReturn(this, out _updatedBy, updatedBy);
 
+        public override UserAdventureStepsSelectionBuilder WithSystemAsUser() => CommonReturn(this, out _isSystemUser, true);
+
         public UserAdventureStepsSelectionBuilder WithUserAdventure(UserAdventureSelection adventure) =>
             CommonReturn(this, out _adventure, adventure);
 
         protected override UserAdventureStepsSelection Build()
         {
-            var adventureStep = new UserAdventureStepsSelection(_adventure, _step, _createdBy);
+            var adventureStep = _isSystemUser ? new UserAdventureStepsSelection(_adventure, _step) : 
+                                                new UserAdventureStepsSelection(_adventure, _step, _createdBy);
 
             if (_createdAt != default)
             {

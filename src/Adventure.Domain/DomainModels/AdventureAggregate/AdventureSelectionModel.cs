@@ -18,7 +18,7 @@ namespace Adventure.Domain.DomainModels.AdventureAggregate
         private readonly List<AdventureSelection> _next = new();
         public IReadOnlyList<AdventureSelection> NextSelection => _next;
 
-        private AdventureSelection()
+        public AdventureSelection()
         {
         }
 

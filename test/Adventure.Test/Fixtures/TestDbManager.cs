@@ -9,7 +9,7 @@
 
         private TestDbManager()
         {
-            TesAdventureDbContext = TesAdventureDbContext.GetTestDB();
+            TesAdventureDbContext = TesAdventureDbContext.GetTestDb();
         }
 
         public static TesAdventureDbContext CreateInstance()

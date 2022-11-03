@@ -19,8 +19,9 @@ namespace Adventure.Test.Builders.AdventureAggregate
         private string _updatedBy;
 
         #endregion
-
+        
         private string _name;
+        private bool _isSystemUser;
         private List<AdventureSelection> _adventureSelections = new List<AdventureSelection>();
 
         public AdventureBuilder WithName(string name) => CommonReturn(this, out _name, name);
@@ -35,11 +36,14 @@ namespace Adventure.Test.Builders.AdventureAggregate
 
         public override AdventureBuilder WithUpdatedBy(string updatedBy) => CommonReturn(this, out _updatedBy, updatedBy);
 
+        public override AdventureBuilder WithSystemAsUser() => CommonReturn(this, out _isSystemUser, true);
+
         public AdventureBuilder WithAdventureSelection(AdventureSelection adventureSelection) => CommonAdd(this, ref _adventureSelections, adventureSelection);
 
         protected override Adventure.Domain.DomainModels.AdventureAggregate.Adventure Build()
         {
-            var adventure = new Adventure.Domain.DomainModels.AdventureAggregate.Adventure(_name, _createdBy);
+            var adventure = _isSystemUser ? new Adventure.Domain.DomainModels.AdventureAggregate.Adventure(_name) :
+                                            new Adventure.Domain.DomainModels.AdventureAggregate.Adventure(_name, _createdBy);
 
             if (_createdAt != default)
             {
