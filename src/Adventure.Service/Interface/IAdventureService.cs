@@ -17,5 +17,6 @@ namespace Adventure.Service.Interface
         Task<SuccessDto> DeleteSelectionAsync(Guid adventureId, byte code);
         Task<SuccessDto> CreateNewAdventureAsync(NewAdventureDto adventure);
         Task<SuccessDto> DeleteAdventureAsync(Guid gameId);
+        Task<SuccessDto> RestoreAdventureAsync(Guid gameId);
     }
 }

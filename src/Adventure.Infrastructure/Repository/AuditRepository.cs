@@ -10,36 +10,36 @@ using Adventure.Infrastructure.Util.InfraModel;
 
 namespace Adventure.Infrastructure.Repository
 {
-    public class RequestLogRepository : IRepository<RequestResponseLog>
+    public class AuditRepository : IRepository<Audit>
     {
         private readonly InfraDbContext _context;
 
-        public RequestLogRepository(InfraDbContext context)
+        public AuditRepository(InfraDbContext context)
         {
             _context = context;
         }
 
-        public void Add(RequestResponseLog obj)
+        public void Add(Audit obj)
         {
-            _context.RequestResponseLogs.Add(obj);
+            _context.Audits.Add(obj);
         }
 
-        public void Update(RequestResponseLog obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> AnyAsync(Expression<Func<RequestResponseLog, bool>> exp)
+        public void Update(Audit obj)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<RequestResponseLog>> GetAllAsync()
+        public Task<bool> AnyAsync(Expression<Func<Audit, bool>> exp)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<RequestResponseLog>> GetAllAsync(Expression<Func<RequestResponseLog, bool>> exp)
+        public Task<List<Audit>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Audit>> GetAllAsync(Expression<Func<Audit, bool>> exp)
         {
             throw new NotImplementedException();
         }

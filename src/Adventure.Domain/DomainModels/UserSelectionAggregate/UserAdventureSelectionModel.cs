@@ -1,11 +1,4 @@
-﻿using Adventure.Domain.DomainModels.AdventureAggregate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Adventure.Domain.DomainModels.UserSelectionAggregate
+﻿namespace Adventure.Domain.DomainModels.UserSelectionAggregate
 {
     public class UserAdventureSelection : BaseModel
     {
@@ -17,7 +10,7 @@ namespace Adventure.Domain.DomainModels.UserSelectionAggregate
         private readonly List<UserAdventureStepsSelection> _steps = new();
         public IReadOnlyList<UserAdventureStepsSelection> Steps => _steps;
 
-        private UserAdventureSelection()
+        public UserAdventureSelection()
         {
         }
 
@@ -29,12 +22,22 @@ namespace Adventure.Domain.DomainModels.UserSelectionAggregate
 
         public void Update(byte step, string updatedBy = "System")
         {
+            if (_steps.Any(x => x.Step == step && !x.IsDeleted))
+            {
+                throw new ArgumentException("Update Failed, this step has already passed");
+            }
+
             _steps.Add(new UserAdventureStepsSelection(this, step, updatedBy));
             Update(updatedBy);
         }
 
         public void Delete(string updatedBy = "system")
         {
+            if (IsDeleted)
+            {
+                throw new InvalidOperationException("This user selected adventure is already removed from this user");
+            }
+
             foreach (var step in _steps)
             {
                 step.MarkAsDeleted(updatedBy);
@@ -44,6 +47,11 @@ namespace Adventure.Domain.DomainModels.UserSelectionAggregate
 
         public void MarkAsCompleted(string updatedBy = "System")
         {
+            if (IsCompleted)
+            {
+                throw new InvalidOperationException("This user selected adventure is already completed");
+            }
+
             IsCompleted = true;
             Update(updatedBy);
         }

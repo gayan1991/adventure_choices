@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adventure.Domain.Interface.Repository
+namespace Adventure.Test.Domain.DomainModels.UserSelectionAggregate
 {
-    public interface IRequestLogRepository
+    internal class CreateUserAdventureTestData
     {
     }
 }

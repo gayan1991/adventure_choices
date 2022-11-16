@@ -9,8 +9,6 @@ namespace Adventure.Domain.Interface.Repository
 {
     public interface IUserAdventureSelectionRepository : IRepository<UserAdventureSelection>
     {
-        void Add(UserAdventureSelection obj);
-        void Update(UserAdventureSelection obj);
         Task<List<UserAdventureSelection>> GetAdventureListByUser(Guid userId);
         Task<UserAdventureSelection?> GetAdventure(Guid userId, Guid adventureId);
         Task<UserAdventureSelection?> GetAdventureDetails(Guid userId, Guid adventureId);

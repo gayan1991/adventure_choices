@@ -1,5 +1,4 @@
-﻿using Adventure.Domain.DomainModels.AdventureAggregate;
-using Adventure.Domain.DomainModels.UserSelectionAggregate;
+﻿using Adventure.Domain.DomainModels.UserSelectionAggregate;
 using Adventure.Domain.Interface.Repository;
 using Adventure.Domain.Util;
 using Adventure.Domain.Util.Exceptions;
@@ -34,7 +33,7 @@ namespace Adventure.Service.Impl
                 obj.Update(selection.Code);
             }
 
-            _userAdventureSelectionRepository.Update(obj);
+            _userAdventureSelectionRepository.Add(obj);
             await _userAdventureSelectionRepository.SaveChangesAsync();
 
             return new SuccessDto(Constants.RecordCreated);
@@ -74,11 +73,6 @@ namespace Adventure.Service.Impl
             if (obj is null)
             {
                 throw new NotFoundException(gameId, "Adventure Selection is not available");
-            }
-
-            if (obj.IsDeleted)
-            {
-                throw new InvalidOperationException("This adventure is removed from this user");
             }
 
             obj.Delete();

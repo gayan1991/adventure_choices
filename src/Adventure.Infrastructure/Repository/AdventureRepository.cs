@@ -20,15 +20,21 @@ namespace Adventure.Infrastructure.Repository
             _context = context;
         }
 
-        public Task<Domain.DomainModels.AdventureAggregate.Adventure?> GetAdventureById(Guid adventureId)
+        public Task<Domain.DomainModels.AdventureAggregate.Adventure?> GetAdventureById(Guid adventureId, bool includeDeleted = false)
         {
-            return _context.Adventures.Include(x => x.Choices).FirstOrDefaultAsync(x => x.Id == adventureId);
+            return _context.Adventures.Include(x => x.Choices)
+                                        .Where(x => includeDeleted || !x.IsDeleted)                        
+                                        .FirstOrDefaultAsync(x => x.Id == adventureId);
         }
 
         public Task<AdventureSelection?> GetAdventureStep(Guid adventureId, byte code)
         {
-            return _context.AdventureSelections.FirstOrDefaultAsync(x => x.Id == adventureId && x.Code == code);
+            return _context.AdventureSelections
+                                        .Where(x => !x.IsDeleted)
+                                        .FirstOrDefaultAsync(x => x.Id == adventureId && x.Code == code);
         }
+
+        #region From IRepository
 
         public void Add(Domain.DomainModels.AdventureAggregate.Adventure adventure)
         {
@@ -39,8 +45,6 @@ namespace Adventure.Infrastructure.Repository
         {
             _context.Adventures.Update(adventure);
         }
-
-        #region From IRepository
 
         public Task<bool> AnyAsync(Expression<Func<Domain.DomainModels.AdventureAggregate.Adventure, bool>> exp)
         {

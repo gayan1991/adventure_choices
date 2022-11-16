@@ -33,7 +33,6 @@ namespace Adventure.Application
 
             services.AddTransient<IAdventureService, AdventureService>();
             services.AddTransient<IUserAdventureService, UserAdventureService>();
-            services.AddTransient<IRequestLogService, RequestLogService>();
 
             #endregion
 
@@ -45,7 +44,6 @@ namespace Adventure.Application
 
             services.AddTransient<IAdventureRepository, AdventureRepository>();
             services.AddTransient<IUserAdventureSelectionRepository, UserAdventureSelectionRepository>();
-            services.AddTransient<IRequestLogRepository, RequestLogRepository>();
 
             #endregion
         }

@@ -72,9 +72,14 @@ namespace Adventure.Domain.DomainModels.AdventureAggregate
 
         public void MarkAsDeleted(string updatedBy = "System")
         {
+            if (IsDeleted)
+            {
+                throw new InvalidOperationException("This adventure has already been deleted");
+            }
+
             foreach (var choice in _choices)
             {
-                choice.MarkAsDeleted(updatedBy);
+                choice.DeleteByParent(updatedBy);
             }
             UpdateDeletedValue(true, updatedBy);
         }

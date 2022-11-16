@@ -41,11 +41,26 @@ namespace Adventure.Domain.DomainModels.AdventureAggregate
 
         public void MarkAsDeleted(string updatedBy = "System")
         {
+            if (IsDeleted)
+            {
+                throw new InvalidOperationException("This selection has already been deleted");
+            }
+
+            UpdateDeletedValue(true, updatedBy);
+        }
+
+        internal void DeleteByParent(string updatedBy = "System")
+        {
             UpdateDeletedValue(true, updatedBy);
         }
 
         public void Restore(string updatedBy = "System")
         {
+            if (!IsDeleted)
+            {
+                throw new InvalidOperationException("This selection is not deleted");
+            }
+
             UpdateDeletedValue(false, updatedBy);
         }
 

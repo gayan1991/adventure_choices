@@ -9,9 +9,7 @@ namespace Adventure.Domain.Interface.Repository
 {
     public interface IAdventureRepository : IRepository<DomainModels.AdventureAggregate.Adventure>
     {
-        Task<DomainModels.AdventureAggregate.Adventure?> GetAdventureById(Guid adventureId);
+        Task<DomainModels.AdventureAggregate.Adventure?> GetAdventureById(Guid adventureId, bool includeDeleted = false);
         Task<AdventureSelection?> GetAdventureStep(Guid adventureId, byte code);
-        void Add(DomainModels.AdventureAggregate.Adventure adventure);
-        void Update(Domain.DomainModels.AdventureAggregate.Adventure adventure);
     }
 }

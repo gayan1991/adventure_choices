@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Adventure.Domain.Interface.Repository;
 using Adventure.Infrastructure.Context;
 using Adventure.Infrastructure.Interceptors;
+using Adventure.Infrastructure.Repository;
+using Adventure.Infrastructure.Util.InfraModel;
+using Adventure.Infrastructure.Util.InfraService;
 using Adventure.Infrastructure.Util.Poco;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -22,6 +26,19 @@ namespace Adventure.Infrastructure
             var config = new DbConfig();
             configuration.Bind(nameof(DbConfig), config);
             services.AddSingleton<SaveChangesInterceptor, AdventureSaveChangeInterceptor>();
+
+            #region Infra Services
+
+            services.AddTransient<IRequestResponseLogService, RequestResponseLogService>();
+
+            #endregion
+
+            #region Infra Repositories
+
+            services.AddTransient<IRepository<Audit>, AuditRepository>();
+            services.AddTransient<IRepository<RequestResponseLog>, RequestLogRepository>();
+
+            #endregion
 
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<AdventureDbContext>((serviceProvider, options) =>

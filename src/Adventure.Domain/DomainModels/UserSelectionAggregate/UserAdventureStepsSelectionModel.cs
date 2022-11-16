@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Adventure.Domain.DomainModels.UserSelectionAggregate
+﻿namespace Adventure.Domain.DomainModels.UserSelectionAggregate
 {
     public class UserAdventureStepsSelection : BaseModel
     {
         public byte Step { get; set; }
         public UserAdventureSelection AdventureSelection { get; set; }
 
-        private UserAdventureStepsSelection()
+        public UserAdventureStepsSelection()
         {
         }
 

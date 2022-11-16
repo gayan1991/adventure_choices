@@ -1,4 +1,5 @@
-﻿using Adventure.Domain.Util.Exceptions;
+﻿using Adventure.Application.Interceptors;
+using Adventure.Domain.Util.Exceptions;
 using Adventure.Service.Interface;
 using Adventure.Service.Models.Request;
 using Adventure.Service.Models.Response;
@@ -20,6 +21,7 @@ namespace Adventure.Application.Controllers
         }
         
         [HttpGet]
+        [RequestResponseLog]
         [ProducesResponseType(typeof(AdventureDto[]), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -36,6 +38,7 @@ namespace Adventure.Application.Controllers
         }
         
         [HttpGet("{id:guid}")]
+        [RequestResponseLog]
         [ProducesResponseType(typeof(AdventureDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -52,6 +55,7 @@ namespace Adventure.Application.Controllers
         }
         
         [HttpPost]
+        [RequestResponseLog]
         [ProducesResponseType(typeof(SuccessDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post([FromBody] NewAdventureDto adventure)
@@ -67,6 +71,7 @@ namespace Adventure.Application.Controllers
         }
 
         [HttpPost("{id:guid}/{parentCode}")]
+        [RequestResponseLog]
         [ProducesResponseType(typeof(SuccessDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -84,6 +89,7 @@ namespace Adventure.Application.Controllers
         }
         
         [HttpDelete("{id:guid}")]
+        [RequestResponseLog]
         [ProducesResponseType(typeof(SuccessDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -100,7 +106,26 @@ namespace Adventure.Application.Controllers
             }
         }
 
+        [HttpPut("restore/{id:guid}")]
+        [RequestResponseLog]
+        [ProducesResponseType(typeof(SuccessDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Restore(Guid id)
+        {
+            try
+            {
+                return Ok(await _adventureService.RestoreAdventureAsync(id));
+            }
+            catch (Exception ex)
+            {
+                return HandleException(ex);
+            }
+        }
+
         [HttpDelete("{id:guid}/{code}")]
+        [RequestResponseLog]
         [ProducesResponseType(typeof(SuccessDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

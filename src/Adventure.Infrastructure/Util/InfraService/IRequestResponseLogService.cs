@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adventure.Service.Interface
+namespace Adventure.Infrastructure.Util.InfraService
 {
-    public interface IRequestLogService
+    public interface IRequestResponseLogService
     {
         Task SaveRequestLogAsync(string actionName, object parameters, IDictionary<string, string?> routing);
+        Task SaveResponseLogAsync(string actionName, object parameters, IDictionary<string, string?> routing, object responseValue);
     }
 }

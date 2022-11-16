@@ -30,7 +30,7 @@ namespace Adventure.Application.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset")
-                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 10, 30, 15, 50, 1, 929, DateTimeKind.Unspecified).AddTicks(3866), new TimeSpan(0, 0, 0, 0, 0)));
+                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 11, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(5940), new TimeSpan(0, 0, 0, 0, 0)));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -51,7 +51,7 @@ namespace Adventure.Application.Migrations
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset")
-                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 10, 30, 15, 50, 1, 929, DateTimeKind.Unspecified).AddTicks(4170), new TimeSpan(0, 0, 0, 0, 0)));
+                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 11, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(6250), new TimeSpan(0, 0, 0, 0, 0)));
 
                     b.Property<string>("UpdatedBy")
                         .IsRequired()
@@ -66,12 +66,12 @@ namespace Adventure.Application.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2ae13338-9ba6-431d-a00a-2837acc4fcee"),
-                            CreatedAt = new DateTimeOffset(new DateTime(2022, 10, 30, 15, 50, 1, 929, DateTimeKind.Unspecified).AddTicks(1972), new TimeSpan(0, 0, 0, 0, 0)),
+                            Id = new Guid("3afb0c39-647a-47c2-8852-e6f9a55c7985"),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 11, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4065), new TimeSpan(0, 0, 0, 0, 0)),
                             CreatedBy = "System",
                             IsDeleted = false,
                             Name = "Doughnut Selection",
-                            UpdatedAt = new DateTimeOffset(new DateTime(2022, 10, 30, 15, 50, 1, 929, DateTimeKind.Unspecified).AddTicks(1972), new TimeSpan(0, 0, 0, 0, 0)),
+                            UpdatedAt = new DateTimeOffset(new DateTime(2022, 11, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4065), new TimeSpan(0, 0, 0, 0, 0)),
                             UpdatedBy = "System"
                         });
                 });
@@ -94,7 +94,7 @@ namespace Adventure.Application.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset")
-                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 10, 30, 15, 50, 1, 929, DateTimeKind.Unspecified).AddTicks(6510), new TimeSpan(0, 0, 0, 0, 0)));
+                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 11, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(8497), new TimeSpan(0, 0, 0, 0, 0)));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -118,7 +118,7 @@ namespace Adventure.Application.Migrations
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset")
-                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 10, 30, 15, 50, 1, 929, DateTimeKind.Unspecified).AddTicks(6810), new TimeSpan(0, 0, 0, 0, 0)));
+                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 11, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(8819), new TimeSpan(0, 0, 0, 0, 0)));
 
                     b.Property<string>("UpdatedBy")
                         .IsRequired()
@@ -135,82 +135,127 @@ namespace Adventure.Application.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("fa351139-3ad6-4794-b71d-9e690692e6d2"),
-                            AdventureId = new Guid("2ae13338-9ba6-431d-a00a-2837acc4fcee"),
+                            Id = new Guid("75205189-e254-4a13-b9a7-2468877b5532"),
+                            AdventureId = new Guid("3afb0c39-647a-47c2-8852-e6f9a55c7985"),
                             Code = (byte)0,
-                            Text = "DO I WANT A DOUGHNUT?"
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4173), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = "System",
+                            IsDeleted = false,
+                            Text = "DO I WANT A DOUGHNUT?",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4191), new TimeSpan(0, 0, 0, 0, 0)),
+                            UpdatedBy = "System"
                         },
                         new
                         {
-                            Id = new Guid("a9f73734-121c-4ed4-9770-046134be1c96"),
+                            Id = new Guid("10dcb061-2385-407c-8f39-dcd7ca8920bf"),
                             Action = "Yes",
-                            AdventureId = new Guid("2ae13338-9ba6-431d-a00a-2837acc4fcee"),
+                            AdventureId = new Guid("3afb0c39-647a-47c2-8852-e6f9a55c7985"),
                             Code = (byte)1,
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4212), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = "System",
+                            IsDeleted = false,
                             ParentCode = (byte)0,
-                            Text = "Do I deserve it?"
+                            Text = "Do I deserve it?",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4212), new TimeSpan(0, 0, 0, 0, 0)),
+                            UpdatedBy = "System"
                         },
                         new
                         {
-                            Id = new Guid("4340e385-bbbc-419b-ab08-da0bd2be7c2b"),
+                            Id = new Guid("fa1d2064-be94-4445-888d-20b1fd4b374e"),
                             Action = "No",
-                            AdventureId = new Guid("2ae13338-9ba6-431d-a00a-2837acc4fcee"),
+                            AdventureId = new Guid("3afb0c39-647a-47c2-8852-e6f9a55c7985"),
                             Code = (byte)2,
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4220), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = "System",
+                            IsDeleted = false,
                             ParentCode = (byte)0,
-                            Text = "Maybe you want an apple?"
+                            Text = "Maybe you want an apple?",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4221), new TimeSpan(0, 0, 0, 0, 0)),
+                            UpdatedBy = "System"
                         },
                         new
                         {
-                            Id = new Guid("fc7bb943-73f7-4400-99b0-eafa6fcfa8a9"),
+                            Id = new Guid("02217c64-168e-46fa-996a-0b6225485fb2"),
                             Action = "Yes",
-                            AdventureId = new Guid("2ae13338-9ba6-431d-a00a-2837acc4fcee"),
+                            AdventureId = new Guid("3afb0c39-647a-47c2-8852-e6f9a55c7985"),
                             Code = (byte)3,
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4227), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = "System",
+                            IsDeleted = false,
                             ParentCode = (byte)1,
-                            Text = "Are you sure?"
+                            Text = "Are you sure?",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4228), new TimeSpan(0, 0, 0, 0, 0)),
+                            UpdatedBy = "System"
                         },
                         new
                         {
-                            Id = new Guid("6420f1a5-fa31-4eee-8d5a-9a813699594c"),
+                            Id = new Guid("35c84599-bdcf-4e0f-a18d-2103adaff2bb"),
                             Action = "No",
-                            AdventureId = new Guid("2ae13338-9ba6-431d-a00a-2837acc4fcee"),
+                            AdventureId = new Guid("3afb0c39-647a-47c2-8852-e6f9a55c7985"),
                             Code = (byte)4,
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4235), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = "System",
+                            IsDeleted = false,
                             ParentCode = (byte)1,
-                            Text = "Is it a good doughnut?"
+                            Text = "Is it a good doughnut?",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4235), new TimeSpan(0, 0, 0, 0, 0)),
+                            UpdatedBy = "System"
                         },
                         new
                         {
-                            Id = new Guid("5297d938-0c1e-4cfd-b243-dfc1763ae463"),
+                            Id = new Guid("ac9d797b-6609-42b6-9943-4dc88fc91670"),
                             Action = "Yes",
-                            AdventureId = new Guid("2ae13338-9ba6-431d-a00a-2837acc4fcee"),
+                            AdventureId = new Guid("3afb0c39-647a-47c2-8852-e6f9a55c7985"),
                             Code = (byte)5,
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4254), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = "System",
+                            IsDeleted = false,
                             ParentCode = (byte)3,
-                            Text = "Get it."
+                            Text = "Get it.",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4254), new TimeSpan(0, 0, 0, 0, 0)),
+                            UpdatedBy = "System"
                         },
                         new
                         {
-                            Id = new Guid("1c35f41f-1fbe-4269-90b3-e6c80ecf8435"),
+                            Id = new Guid("e86a9439-366c-4875-b49f-e3b63c3ad32a"),
                             Action = "No",
-                            AdventureId = new Guid("2ae13338-9ba6-431d-a00a-2837acc4fcee"),
+                            AdventureId = new Guid("3afb0c39-647a-47c2-8852-e6f9a55c7985"),
                             Code = (byte)6,
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4264), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = "System",
+                            IsDeleted = false,
                             ParentCode = (byte)3,
-                            Text = "Do jumping jacks first."
+                            Text = "Do jumping jacks first.",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4265), new TimeSpan(0, 0, 0, 0, 0)),
+                            UpdatedBy = "System"
                         },
                         new
                         {
-                            Id = new Guid("0a7d4e14-7289-4602-bcb6-4962b9c84dba"),
+                            Id = new Guid("01b4406e-8142-4d77-acbc-388bb1bbc1dd"),
                             Action = "Yes",
-                            AdventureId = new Guid("2ae13338-9ba6-431d-a00a-2837acc4fcee"),
+                            AdventureId = new Guid("3afb0c39-647a-47c2-8852-e6f9a55c7985"),
                             Code = (byte)7,
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4272), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = "System",
+                            IsDeleted = false,
                             ParentCode = (byte)4,
-                            Text = "What are you waiting for? Grab it now."
+                            Text = "What are you waiting for? Grab it now.",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4272), new TimeSpan(0, 0, 0, 0, 0)),
+                            UpdatedBy = "System"
                         },
                         new
                         {
-                            Id = new Guid("d09f457e-6bfd-45e0-88c9-52088777bcaa"),
+                            Id = new Guid("46350bf6-1b21-43ea-b46c-e67caac4c70e"),
                             Action = "No",
-                            AdventureId = new Guid("2ae13338-9ba6-431d-a00a-2837acc4fcee"),
+                            AdventureId = new Guid("3afb0c39-647a-47c2-8852-e6f9a55c7985"),
                             Code = (byte)8,
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4279), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedBy = "System",
+                            IsDeleted = false,
                             ParentCode = (byte)4,
-                            Text = "Wait 'till you find a sinful unforgettable doughnut."
+                            Text = "Wait 'till you find a sinful unforgettable doughnut.",
+                            UpdatedAt = new DateTimeOffset(new DateTime(2022, 10, 16, 0, 23, 0, 559, DateTimeKind.Unspecified).AddTicks(4279), new TimeSpan(0, 0, 0, 0, 0)),
+                            UpdatedBy = "System"
                         });
                 });
 
@@ -225,7 +270,7 @@ namespace Adventure.Application.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset")
-                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 10, 30, 15, 50, 1, 929, DateTimeKind.Unspecified).AddTicks(8433), new TimeSpan(0, 0, 0, 0, 0)));
+                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 11, 16, 0, 23, 0, 560, DateTimeKind.Unspecified).AddTicks(430), new TimeSpan(0, 0, 0, 0, 0)));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -246,7 +291,7 @@ namespace Adventure.Application.Migrations
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset")
-                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 10, 30, 15, 50, 1, 929, DateTimeKind.Unspecified).AddTicks(8730), new TimeSpan(0, 0, 0, 0, 0)));
+                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 11, 16, 0, 23, 0, 560, DateTimeKind.Unspecified).AddTicks(746), new TimeSpan(0, 0, 0, 0, 0)));
 
                     b.Property<string>("UpdatedBy")
                         .IsRequired()
@@ -273,7 +318,7 @@ namespace Adventure.Application.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset")
-                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 10, 30, 15, 50, 1, 929, DateTimeKind.Unspecified).AddTicks(9541), new TimeSpan(0, 0, 0, 0, 0)));
+                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 11, 16, 0, 23, 0, 560, DateTimeKind.Unspecified).AddTicks(1623), new TimeSpan(0, 0, 0, 0, 0)));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -292,7 +337,7 @@ namespace Adventure.Application.Migrations
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset")
-                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 10, 30, 15, 50, 1, 929, DateTimeKind.Unspecified).AddTicks(9805), new TimeSpan(0, 0, 0, 0, 0)));
+                        .HasDefaultValue(new DateTimeOffset(new DateTime(2022, 11, 16, 0, 23, 0, 560, DateTimeKind.Unspecified).AddTicks(1911), new TimeSpan(0, 0, 0, 0, 0)));
 
                     b.Property<string>("UpdatedBy")
                         .IsRequired()

@@ -1,4 +1,5 @@
-﻿using Adventure.Service.Interface;
+﻿using Adventure.Infrastructure.Util.InfraService;
+using Adventure.Service.Interface;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Adventure.Application.Interceptors
@@ -7,17 +8,26 @@ namespace Adventure.Application.Interceptors
     {
         public override Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            var svc = context.HttpContext.RequestServices;
-            var requestLogService = svc.GetService<IRequestLogService>();
-
-            var ss = context.ActionDescriptor.Parameters.ToDictionary(x => x.Name, x => x).FirstOrDefault();
-
-
-
-            Task.Run(async () => await requestLogService!.SaveRequestLogAsync(context.ActionDescriptor.DisplayName!, context.ActionDescriptor.Parameters,
-                context.ActionDescriptor.RouteValues));
-
+            AddLog(context);
             return next();
         }
+
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            base.OnActionExecuted(context);
+        }
+
+        #region Private
+
+        private async void AddLog(ActionExecutingContext context)
+        {
+            var svc = context.HttpContext.RequestServices;
+            var requestLogService = svc.GetService<IRequestResponseLogService>();
+            
+            await requestLogService!.SaveRequestLogAsync(context.ActionDescriptor.DisplayName!, context.ActionArguments,
+                                                            context.ActionDescriptor.RouteValues);
+        }
+
+        #endregion
     }
 }

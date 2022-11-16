@@ -106,11 +106,6 @@ namespace Adventure.Service.Impl
                 throw new NotFoundException(adventureId, "Adventure Selection");
             }
 
-            if (adventure.IsDeleted)
-            {
-                throw new InvalidOperationException("This adventure has already been deleted");
-            }
-
             adventure.MarkAsDeleted();
 
             _adventureRepository.Update(adventure);
@@ -118,7 +113,24 @@ namespace Adventure.Service.Impl
 
             return new SuccessDto(Constants.RecordDeleted);
         }
-        
+
+        public async Task<SuccessDto> RestoreAdventureAsync(Guid adventureId)
+        {
+            var adventure = await _adventureRepository.GetAdventureById(adventureId, true);
+
+            if (adventure is null)
+            {
+                throw new NotFoundException(adventureId, "Adventure Selection");
+            }
+
+            adventure.Restore();
+
+            _adventureRepository.Update(adventure);
+            await _adventureRepository.SaveChangesAsync();
+
+            return new SuccessDto(Constants.RecordUpdated);
+        }
+
         public async Task<SuccessDto> DeleteSelectionAsync(Guid adventureId, byte code)
         {
             var adventure = await _adventureRepository.GetAdventureById(adventureId);
@@ -131,11 +143,6 @@ namespace Adventure.Service.Impl
             if (adventure.IsDeleted)
             {
                 throw new InvalidOperationException("This adventure has already been deleted");
-            }
-
-            if (adventure[code].IsDeleted)
-            {
-                throw new InvalidOperationException("This selection has already been deleted");
             }
 
             adventure[code].MarkAsDeleted();

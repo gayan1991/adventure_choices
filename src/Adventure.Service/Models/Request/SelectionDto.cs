@@ -10,7 +10,6 @@ namespace Adventure.Service.Models.Request
     {
         public string Text { get; set; } = null!;
         public string Action { get; set; } = null!;
-
-        public List<SelectionDto> NextSelections;
+        public List<SelectionDto> NextSelections { get; set; } = null!;
     }
 }

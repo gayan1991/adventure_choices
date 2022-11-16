@@ -37,6 +37,8 @@ namespace Adventure.Infrastructure.Repository
                                         .Where(x => x.UserId == userId && x.AdventureId == adventureId && !x.IsCompleted).FirstOrDefaultAsync();
         }
 
+        #region From IRepository
+
         public void Add(UserAdventureSelection obj)
         {
             _context.UserAdventureSelections.Add(obj);
@@ -46,8 +48,6 @@ namespace Adventure.Infrastructure.Repository
         {
             _context.UserAdventureSelections.Update(obj);
         }
-
-        #region From IRepository
 
         public Task<bool> AnyAsync(Expression<Func<UserAdventureSelection, bool>> exp)
         {

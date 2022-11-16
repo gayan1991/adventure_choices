@@ -1,4 +1,5 @@
-﻿using Adventure.Domain.Util.Exceptions;
+﻿using Adventure.Application.Interceptors;
+using Adventure.Domain.Util.Exceptions;
 using Adventure.Service.Interface;
 using Adventure.Service.Models.Request;
 using Adventure.Service.Models.Response;
@@ -20,6 +21,7 @@ namespace Adventure.Application.Controllers
         }
         
         [HttpGet("{id:guid}")]
+        [RequestResponseLog]
         [ProducesResponseType(typeof(UserAdventureDto[]), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -35,15 +37,16 @@ namespace Adventure.Application.Controllers
             }
         }
 
-        [HttpGet("{id:guid}/{gameId:guid}")]
+        [HttpGet("{userId:guid}/{gameId:guid}")]
+        [RequestResponseLog]
         [ProducesResponseType(typeof(UserAdventureDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Get(Guid id, Guid gameId)
+        public async Task<IActionResult> Get(Guid userId, Guid gameId)
         {
             try
             {
-                return Ok(await _userAdventureService.GetAdventureInfoByUser(id, gameId));
+                return Ok(await _userAdventureService.GetAdventureInfoByUser(userId, gameId));
             }
             catch (Exception ex)
             {
@@ -51,15 +54,16 @@ namespace Adventure.Application.Controllers
             }
         }
         
-        [HttpGet("{id:guid}/{gameId:guid}/detail")]
+        [HttpGet("{userId:guid}/{gameId:guid}/detail")]
+        [RequestResponseLog]
         [ProducesResponseType(typeof(UserAdventureDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetDetail(Guid id, Guid gameId)
+        public async Task<IActionResult> GetDetail(Guid userId, Guid gameId)
         {
             try
             {
-                return Ok(await _userAdventureService.GetAdventureDetailInfoByUser(id, gameId));
+                return Ok(await _userAdventureService.GetAdventureDetailInfoByUser(userId, gameId));
             }
             catch (Exception ex)
             {
@@ -68,6 +72,7 @@ namespace Adventure.Application.Controllers
         }
         
         [HttpPost]
+        [RequestResponseLog]
         [ProducesResponseType(typeof(SuccessDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -83,16 +88,17 @@ namespace Adventure.Application.Controllers
             }
         }
         
-        [HttpPut("{id:guid}/{gameId:guid}")]
+        [HttpPut("{userId:guid}/{gameId:guid}")]
+        [RequestResponseLog]
         [ProducesResponseType(typeof(SuccessDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Put(Guid id, Guid gameId, [FromBody] byte code)
+        public async Task<IActionResult> Put(Guid userId, Guid gameId, [FromBody] byte code)
         {
             try
             {
-                return Ok(await _userAdventureService.UpdateAdventureSelectionForUserAsync(id, gameId, code));
+                return Ok(await _userAdventureService.UpdateAdventureSelectionForUserAsync(userId, gameId, code));
             }
             catch (Exception ex)
             {
@@ -100,16 +106,17 @@ namespace Adventure.Application.Controllers
             }
         }
         
-        [HttpDelete("{id:guid}/{gameId:guid}")]
+        [HttpDelete("{userId:guid}/{gameId:guid}")]
+        [RequestResponseLog]
         [ProducesResponseType(typeof(SuccessDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Delete(Guid id, Guid gameId)
+        public async Task<IActionResult> Delete(Guid userId, Guid gameId)
         {
             try
             {
-                return Ok(await _userAdventureService.DeleteUsersAdventureGame(id, gameId));
+                return Ok(await _userAdventureService.DeleteUsersAdventureGame(userId, gameId));
             }
             catch (Exception ex)
             {
